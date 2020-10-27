@@ -15,7 +15,8 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::all();
-        dd($books);
+        
+        return view("index", compact('books'));
 
     }
 
@@ -26,7 +27,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -37,7 +38,26 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $data = $request->all();
+        $book = new Book;
+
+        $book->title = $data['title'];
+        $book->autohr = $data['autohr'];
+        $book->pages = $data['pages'];
+        $book->edition = $data['edition'];
+        $book->year = $data['year'];
+        $book->genre = $data['genre'];
+        $book->image = $data['image'];
+        $book->isbn = $data['isbn'];
+
+        $book->save();
+
+        dd($book); 
+
+        
+
+
     }
 
     /**
