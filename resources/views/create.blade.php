@@ -13,7 +13,7 @@
 </head>
 <body>
     
-<form action="{{route('store')}}" method="POST">
+<form action="{{route('books.store')}}" method="POST">
 
     @csrf
     @method('POST')
@@ -42,8 +42,17 @@
         <input type="submit" value="Salva"> 
     </div>
 
-
 </form>
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 </body>
 </html>

@@ -17,7 +17,6 @@
             margin-left: 30px;
             width: 500px;
             padding-bottom: 10px;
-            border-bottom: 2px solid rgb(39, 121, 121);
         }
 
         .title, .author {
@@ -32,14 +31,20 @@
 </head>
 <body>
     
-@foreach ($books as $book)
     <div class="scheda">
         <h2 class="title">{{$book->title}} </h2>
         <h3 class="author"><em>{{$book->autohr}} </em></h3>
         <small class="edition">Edizione: {{$book->edition}}</small>
         <img src="{{$book->image}} " alt="">
     </div>
-@endforeach
 
+
+<form action="{{route('books.destroy', $book->id)}} " method="post">
+    @csrf
+    @method('DELETE')
+
+    <input type="submit" value="Cancella">
+</form>
 </body>
 </html>
+
