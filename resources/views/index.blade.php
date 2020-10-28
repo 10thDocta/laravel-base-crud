@@ -37,7 +37,7 @@
         <h2 class="title">{{$book->title}} </h2>
         <h3 class="author"><em>{{$book->autohr}} </em></h3>
         <small class="edition">Edizione: {{$book->edition}}</small>
-        <img src="{{$book->image}} " alt="">
+        <a href="{{route('books.show', $book->id)}} "><img src="{{$book->image}} " alt=""></a>
     </div>
 @endforeach
 

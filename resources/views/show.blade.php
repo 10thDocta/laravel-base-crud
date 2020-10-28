@@ -23,6 +23,14 @@
             text-align: center
         }
 
+        small {
+            display: block;
+        }
+
+        small:first-of-type {
+            margin-top: 30px;
+        }
+
         img {
             display: block; 
             max-width: 500px;
@@ -35,16 +43,19 @@
         <h2 class="title">{{$book->title}} </h2>
         <h3 class="author"><em>{{$book->autohr}} </em></h3>
         <small class="edition">Edizione: {{$book->edition}}</small>
+        <small class="edition">Anno: {{$book->year}}</small>
+        <small class="edition">Genere: {{$book->genre}}</small>
+        <small class="edition">Pagine: {{$book->pages}}</small>
         <img src="{{$book->image}} " alt="">
     </div>
 
 
-<form action="{{route('books.destroy', $book->id)}} " method="post">
-    @csrf
-    @method('DELETE')
+    <form action="{{route('books.destroy', $book->id)}} " method="post">
+        @csrf
+        @method('DELETE')
 
-    <input type="submit" value="Cancella">
-</form>
+        <input type="submit" value="Cancella">
+    </form>
 </body>
 </html>
 

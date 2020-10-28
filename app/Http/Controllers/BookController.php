@@ -129,8 +129,7 @@ class BookController extends Controller
 
         $book->update();
 
-        return redirect()->route('books.show', $book);
-                    
+        return redirect()->route('books.show', $book);                  
     }
 
     /**
@@ -146,6 +145,5 @@ class BookController extends Controller
         $book->delete();
 
         return redirect()->route('books.index');
-
     }
 }
