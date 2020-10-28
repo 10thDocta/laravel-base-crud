@@ -1,58 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+@extends('layout.main')
+    
+@section('title')
+    Create Book
+@endsection
+
     <style>
-        div {
+        .form-field {
             margin: 30px;
         }
     </style>
-</head>
-<body>
-    
-<form action="{{route('books.store')}}" method="POST">
 
-    @csrf
-    @method('POST')
+@section('main')
+    <form action="{{route('books.store')}}" method="POST">
 
-    <div>
-        <input type="text" name="title" placeholder="Titolo">
-        <input type="text" name="autohr" placeholder="Autore">
-    </div>
+        @csrf
+        @method('POST')
 
-    <div>
-        <input type="text" name="edition" placeholder="Edizione">
-        <input type="text" name="image" placeholder="URL immagine">
-    </div>
+        <div class="form-field">
+            <label for="title">Titolo</label>
+            <input type="text" name="title" id="title" placeholder="Titolo">
+            <label for="autohr">Autore</label>
+            <input type="text" name="autohr" id="autohr" placeholder="Autore">
+        </div>
 
-    <div>
-        <input type="text" name="isbn" placeholder="ISBN">
-        <input type="text" name="pages" placeholder="Pagine">
-    </div>
+        <div class="form-field">
+            <label for="edition">Edizione</label>
+            <input type="text" name="edition" id="edition" placeholder="Edizione">
+            <label for="image">URL immagine</label>
+            <input type="text" name="image" id="image" placeholder="URL immagine">
+        </div>
 
-    <div>
-        <input type="date" name="year" placeholder="Anno">
-        <input type="text" name="genre" placeholder="Genere">
-    </div>
+        <div class="form-field">
+            <label for="isbn">ISBN</label>
+            <input type="text" name="isbn" id="isbn" placeholder="ISBN">
+            <label for="pages">Pagine</label>
+            <input type="text" name="pages" id="pages" placeholder="Pagine">
+        </div>
 
-    <div>
-        <input type="submit" value="Salva"> 
-    </div>
+        <div class="form-field">
+            <label for="year">Data</label>
+            <input type="date" name="year" id="year" placeholder="Anno">
+            <label for="genre">Genere</label>
+            <input type="text" name="genre" id="genre" placeholder="Genere">
+        </div>
 
-</form>
+        <div class="form-field">
+            <input type="submit" value="Salva"> 
+        </div>
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+    </form>
 
-</body>
-</html>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+@endsection
+
+

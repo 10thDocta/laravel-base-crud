@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+@extends('layout.main')
+
+@section('title')
+    Books
+@endsection
+
     <style>
         *{
             margin: 0;
@@ -29,8 +28,7 @@
             max-width: 500px;
         }
     </style>
-</head>
-<body>
+
     
 @foreach ($books as $book)
     <div class="scheda">

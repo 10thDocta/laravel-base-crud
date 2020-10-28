@@ -1,57 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+@extends('layout.main')
+
+@section('title')
+    Edit {{$book->title}}
+@endsection
+
     <style>
-        div {
+
+        body {
+            display: flex;
+            flex-basis: 50%;
+        }
+
+        .form-field {
             margin: 30px;
         }
+
+        img {
+            max-width: 300px;
+        }
     </style>
-</head>
-<body>
+
+
+@section('main')
+
+    <a class="btn-back" href="{{route('books.show', $book->id)}}">Ritorna</a>
+
+<div class="box-left">
+
+    <form action="{{route('books.update', $book->id)}}" method="POST">
     
-<form action="{{route('books.update', $book->id)}}" method="POST">
+        @csrf
+        @method('PUT')
+    
+        <div class="form-field">
+            <label for="title">Titolo</label>
+            <input type="text" name="title" id="title" placeholder="Titolo" value="{{$book->title}}">
 
-    @csrf
-    @method('PUT')
+            <label for="autohr">Autore</label>
+            <input type="text" name="autohr" id="autohr" placeholder="Autore" value="{{$book->autohr}}">
+        </div>
 
-    <div>
-        <input type="text" name="title" value="{{$book->title}}" placeholder="Titolo">
-        <input type="text" name="autohr" value="{{$book->autohr}}" placeholder="Autore">
-    </div>
+        <div class="form-field">
+            <label for="edition">Edizione</label>
+            <input type="text" name="edition" id="edition" placeholder="Edizione" value="{{$book->edition}}">
 
-    <div>
-        <input type="text" name="edition" value="{{$book->edition}}" placeholder="Edizione">
-        <input type="text" name="image" value="{{$book->image}}" placeholder="URL immagine">
-    </div>
+            <label for="image">URL immagine</label>
+            <input type="text" name="image" id="image" placeholder="URL immagine" value="{{$book->image}}">
+        </div>
 
-    <div>
-        <input type="text" name="isbn" value="{{$book->isbn}}" placeholder="ISBN">
-        <input type="text" name="pages" value="{{$book->pages}}" placeholder="Pagine">
-    </div>
+        <div class="form-field">
+            <label for="isbn">ISBN</label>
+            <input type="text" name="isbn" id="isbn" placeholder="ISBN" value="{{$book->isbn}}">
 
-    <div>
-        <input type="date" name="year" value="{{$book->year}}" placeholder="Anno">
-        <input type="text" name="genre" value="{{$book->genre}}" placeholder="Genere">
-    </div>
-    <div>
-        <input type="submit" value="Salva"> 
-    </div>
+            <label for="pages">Pagine</label>
+            <input type="text" name="pages" id="pages" placeholder="Pagine" value="{{$book->pages}}">
+        </div>
 
-</form>
+        <div class="form-field">
+            <label for="year">Data</label>
+            <input type="date" name="year" id="year" placeholder="Anno" value="{{$book->year}}">
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+            <label for="genre">Genere</label>
+            <input type="text" name="genre" id="genre" placeholder="Genere" value="{{$book->genre}}">
+        </div>
 
-</body>
-</html>
+        <div class="form-field">
+            <input type="submit" value="Salva"> 
+        </div>
+    
+    </form>
+    
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+</div>
+
+<div class="box-rigth">
+    <img src="{{$book->image}}" alt="">
+</div>
+
+@endsection
+    
+
